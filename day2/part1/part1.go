@@ -30,7 +30,7 @@ const (
 	Z = SCISSORS
 )
 
-func main() {
+func Main() {
 	file, e := os.Open("./input.txt")
 	if e != nil {
 		panic(e)
