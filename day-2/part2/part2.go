@@ -1,4 +1,4 @@
-package main
+package part2 
 
 import (
 	"fmt"
@@ -25,9 +25,13 @@ const (
 	A int = ROCK
 	B = PAPER
 	C = SCISSORS
-	X = ROCK
-	Y = PAPER
-	Z = SCISSORS
+)
+
+// player mappings
+const (
+	X int = LOSS
+	Y = DRAW
+	Z = WIN
 )
 
 func main() {
@@ -66,13 +70,14 @@ func getMove(move byte) int {
 }
 
 func play(player int, opponent int) int {
-	if player == ROCK && opponent == SCISSORS ||
-	player == PAPER && opponent == ROCK ||
-	player == SCISSORS && opponent == PAPER {
-		return WIN + player
+	loseLut := []int{SCISSORS, ROCK, PAPER}
+	winLut := []int{PAPER, SCISSORS, ROCK}
+
+	if player == LOSS {
+		return LOSS + loseLut[opponent - 1]
 	}
-	if player == opponent {
-		return DRAW + player
+	if player == WIN{
+		return WIN + winLut[opponent - 1]
 	}
-	return LOSS + player
+	return DRAW + opponent
 }
